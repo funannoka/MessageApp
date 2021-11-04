@@ -258,18 +258,22 @@ class SearchViewController:  UIViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell: SearchCollectionViewCell = collectionView.cellForItem(at: indexPath as IndexPath) as! SearchCollectionViewCell
-//        if let user = self.user {
-            self.tappedUser = cell.getUser()
+        if let tappedUser = cell.getUser() {
+        self.tappedUser = tappedUser
             self.getChannel()
             performSegue(withIdentifier: "searchToChat", sender: self)
-//         }
+         }
     
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ChatViewController
-        vc.user = self.tappedUser
-        vc.channel = self.channel
+        if let user = self.user, let tappedUser = self.tappedUser, let channel = self.channel {
+        vc.user = user
+        vc.tappedUser = tappedUser
+        vc.sender = Sender(senderId: user.uid, displayName: user.firstName)
+        vc.channel = channel
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

@@ -46,6 +46,7 @@
 		AA5CDDAE27272289000B6108 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		AA5CDDB02727249C000B6108 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA5CDDB227278317000B6108 /* ExtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtViewController.swift; sourceTree = "<group>"; };
+		AA5FC811273286A300C28E0B /* Notes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Notes.md; sourceTree = "<group>"; };
 		AA80DBEF2724A1C9009D6197 /* ChannelsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA80DBF02724A1C9009D6197 /* ChannelsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelsCollectionViewCell.xib; sourceTree = "<group>"; };
 		AA80DBF32725C533009D6197 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 				AA9009E8271F22DB0030AD1C /* LaunchScreen.storyboard */,
 				AA9009EB271F22DB0030AD1C /* Info.plist */,
 				AA9009F8271F3C230030AD1C /* GoogleService-Info.plist */,
+				AA5FC811273286A300C28E0B /* Notes.md */,
 			);
 			path = MessageApp;
 			sourceTree = "<group>";

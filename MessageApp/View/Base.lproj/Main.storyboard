@@ -603,6 +603,7 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7t6-Kx-0qN" customClass="CircularImageView" customModule="MessageApp" customModuleProvider="target">
                                                 <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                                <color key="backgroundColor" name="avatarViewBackground"/>
                                             </imageView>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgz-qc-g8c">
                                                 <rect key="frame" x="5" y="5" width="40" height="40"/>
@@ -716,6 +717,9 @@
         <image name="plus.bubble" catalog="system" width="128" height="110"/>
         <namedColor name="ImageLabelBackgroundColor">
             <color red="0.11400000005960464" green="0.82700002193450928" blue="0.74099999666213989" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="avatarViewBackground">
+            <color red="0.55699998140335083" green="0.55699998140335083" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

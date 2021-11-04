@@ -41,8 +41,8 @@ class SearchCollectionViewCell: UICollectionViewCell {
          tappedUser = user
      }
      
-     func getUser() -> User {
-         let user = tappedUser!
+     func getUser() -> User? {
+         let user = tappedUser
          return user
      }
 

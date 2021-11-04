@@ -349,34 +349,21 @@ extension ChannelsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell: ChannelsCollectionViewCell = collectionView.cellForItem(at: indexPath as IndexPath) as! ChannelsCollectionViewCell
         self.tappedChannel = cell.getChannel()
-        if let channel = self.tappedChannel, let user = userInfo {
-            let members = channel.members
-            if let index = members.firstIndex(where: { $0 != user.uid }) {
-                let tappedUserId = members[index]
-                userReference.document(tappedUserId).getDocument { documentSnapshot, error in
-                    if let err = error {
-                        print("Error getting documents: \(err)")
-                    } else {
-                        guard let snapshot = documentSnapshot else {
-                          print("Error listening for user updates: \(error?.localizedDescription ?? "No error")")
-                            return
-                        }
-                        guard let tappedUser = User(document: snapshot) else {
-                          return
-                        }
-                        self.tappedUser = tappedUser
-                    }
-                }
-            }
-            performSegue(withIdentifier: "homeToChat", sender: self)
+        if let tappedUser = cell.getTappedUser() {
+            self.tappedUser = tappedUser
+            
         }
+        performSegue(withIdentifier: "homeToChat", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ChatViewController
-        vc.user = self.userInfo
-        vc.tappedUser = self.tappedUser
-        vc.channel = self.tappedChannel
+        if let user = self.userInfo, let tappedUser = self.tappedUser, let channel = self.tappedChannel {
+            vc.user = user
+            vc.tappedUser = tappedUser
+            vc.channel = channel
+            vc.sender = Sender(senderId: user.uid, displayName: user.firstName)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

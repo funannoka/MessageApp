@@ -19,6 +19,7 @@ class ChannelsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     
     var tappedChannel: Channel?
+    var tappedUser: User?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,8 +32,14 @@ class ChannelsCollectionViewCell: UICollectionViewCell {
         return channel
     }
     
+    func getTappedUser() -> User? {
+        let user = tappedUser
+        return user
+    }
+    
     func updateCell (channel: Channel, user: User?) {
         tappedChannel = channel
+        tappedUser = user
             if channel.type == 1 {
                 if let user = user {
                     senderLabel.text = "\(user.firstName) \(user.lastName)"

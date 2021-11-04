@@ -13,7 +13,7 @@ import InputBarAccessoryView
 import FirebaseFirestore
 import Kingfisher
 
-class ChatViewController: UIViewController {//MessagesViewController {
+class ChatViewController: MessagesViewController {
 
     @IBOutlet weak var profileImageContainer: UIView!
     @IBOutlet weak var profileImage: CircularImageView!
@@ -31,15 +31,21 @@ class ChatViewController: UIViewController {//MessagesViewController {
 
     var messages: [Message] = []
     var messageListener: ListenerRegistration?
+    var sender: Sender?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        navigationItem.hidesBackButton = false
         navigationItem.setHidesBackButton(false, animated: false)
-//        messagesCollectionView.messagesDataSource = self
-//        messagesCollectionView.messagesLayoutDelegate = self
-//        messagesCollectionView.messagesDisplayDelegate = self
+        messagesCollectionView.messagesDataSource = self
+        messagesCollectionView.messagesLayoutDelegate = self
+        messagesCollectionView.messagesDisplayDelegate = self
         loadUserInfoUIView ()
+        if let sender = sender {
+            
+            messages = [Message(sender:  sender, messageId: UUID().uuidString, sentDate: Date.now, kind: MessageKind.emoji("🍀")), Message(sender:  Sender(senderId: "my_unique_id", displayName: "Funa"), messageId: "!!%%5!", sentDate: Date.now, kind: MessageKind.text("Ayyyyye!"))]
+        }
+        
     }
     
 //    override func viewDidAppear(_ animated: Bool) {
@@ -52,8 +58,7 @@ class ChatViewController: UIViewController {//MessagesViewController {
 //        navigationController?.setNavigationBarHidden(false, animated: animated)
 //    }
 //
-//    let sender = Sender(senderId: "any_unique_id", displayName: "Steven")
-//    let messages = [Message(sender:  Sender(senderId: "any_unique_id", displayName: "Steven"), messageId: "!!!!!", sentDate: Date.now, kind: MessageKind.emoji("🍀")), Message(sender:  Sender(senderId: "my_unique_id", displayName: "Funa"), messageId: "!!%%5!", sentDate: Date.now, kind: MessageKind.text("Ayyyyye!"))]
+    
 
 
     func loadUserInfoUIView () {
@@ -89,24 +94,24 @@ class ChatViewController: UIViewController {//MessagesViewController {
 }
 
 
-//extension ChatViewController: MessagesDataSource {
-//
-//    func currentSender() -> SenderType {
-//        return sender
-//    }
-//
-//    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-//        return messages[indexPath.section]
-//    }
-//
-//    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-//        return messages.count
-//    }
-//
-//
-//}
-//
-//extension ChatViewController: MessagesLayoutDelegate, MessagesDisplayDelegate {
-//
-//}
+extension ChatViewController: MessagesDataSource {
+
+    func currentSender() -> SenderType {
+        return self.sender!
+    }
+
+    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
+        return messages[indexPath.section]
+    }
+
+    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
+        return messages.count
+    }
+
+
+}
+
+extension ChatViewController: MessagesLayoutDelegate, MessagesDisplayDelegate {
+
+}
 
