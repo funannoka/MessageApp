@@ -395,11 +395,19 @@ extension ChannelsViewController: UICollectionViewDataSource, UICollectionViewDe
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ChatViewController
-        if let user = self.userInfo, let tappedUser = self.tappedUser, let channel = self.tappedChannel {
-            vc.user = user
-            vc.tappedUser = tappedUser
-            vc.channel = channel
-            vc.sender = Sender(senderId: user.uid, displayName: user.firstName)
+        if let user = self.userInfo, let channel = self.tappedChannel {
+            if channel.type == 1 {
+                guard let tappedUser = self.tappedUser
+                else { return }
+                    vc.tappedUser = tappedUser
+                    vc.user = user
+                    vc.channel = channel
+                    vc.sender = Sender(senderId: user.uid, displayName: user.firstName)
+            } else {
+                vc.user = user
+                vc.channel = channel
+                vc.sender = Sender(senderId: user.uid, displayName: user.firstName)
+            }
         }
     }
     

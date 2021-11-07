@@ -134,29 +134,6 @@ class ChatViewController: MessagesViewController {
 //            s.clipsToBounds = true
             s.kf.setImage(with: url)
             v.addSubview(s)
-//            let titleLabel = UILabel()
-//
-//            let initials = getInitial(first: tappedUser!.firstName, last: tappedUser!.lastName)
-//            titleLabel.text = initials
-//            titleLabel.textColor = .primary
-//            titleLabel.frame = CGRect(x: 48, y: 46, width: 45, height: 45)
-//            titleLabel.frame.origin.x = CGFloat(48)
-//            titleLabel.translatesAutoresizingMaskIntoConstraints = true // make nav bar happy
-//            v.addSubview(titleLabel)
-            //Stack View
-      //      let stackView   = UIStackView()
-//            stackView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-//            stackView.frame.origin.x = CGFloat(0)
-//            stackView.axis  = NSLayoutConstraint.Axis.horizontal
-//            stackView.distribution  = UIStackView.Distribution.equalSpacing
-//            stackView.alignment = UIStackView.Alignment.center
-//            stackView.spacing   = 0
-//
-//            stackView.addArrangedSubview(v)
-//            stackView.addArrangedSubview(titleLabel)
-//            stackView.translatesAutoresizingMaskIntoConstraints = true
-//
-//
             navigationItem.titleView = v
         }
             
@@ -353,6 +330,7 @@ class ChatViewController: MessagesViewController {
                 }
             }
         }
+    
     func uploadImage(
       _ image: UIImage,
       to channel: Channel,
