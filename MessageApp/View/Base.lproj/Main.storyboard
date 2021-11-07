@@ -333,8 +333,9 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrm-cH-blM" userLabel="Profile Image Container">
                                                             <rect key="frame" x="0.0" y="8.5" width="50" height="50"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MeAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="S4M-4N-QDo" customClass="CircularImageView" customModule="MessageApp" customModuleProvider="target">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S4M-4N-QDo" customClass="CircularImageView" customModule="MessageApp" customModuleProvider="target">
                                                                     <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                                                    <color key="backgroundColor" name="avatarViewBackground"/>
                                                                 </imageView>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5U-js-gvO">
                                                                     <rect key="frame" x="5" y="5" width="40" height="40"/>
@@ -633,7 +634,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="abU-eG-3a4">
                                                 <rect key="frame" x="5" y="5" width="259" height="40"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CHn-8m-FRP" userLabel="User Label">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CHn-8m-FRP" userLabel="User Label">
                                                         <rect key="frame" x="0.0" y="0.0" width="32" height="20"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <nil key="textColor"/>
@@ -702,17 +703,11 @@
             <point key="canvasLocation" x="-523.1884057971015" y="265.84821428571428"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="S4M-4N-QDo">
-            <size key="intrinsicContentSize" width="36" height="36"/>
-        </designable>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="6Qp-BS-wSH"/>
         <segue reference="g3y-0T-14r"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="MeAvatar" width="36" height="36"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="plus.bubble" catalog="system" width="128" height="110"/>
         <namedColor name="ImageLabelBackgroundColor">

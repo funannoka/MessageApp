@@ -37,51 +37,50 @@ class ChannelsCollectionViewCell: UICollectionViewCell {
         return user
     }
     
-    func updateCell (channel: Channel, user: User?) {
+    func updateCell (channel: Channel, user: User?, recentMessage: RecentMessage?) {
         tappedChannel = channel
         tappedUser = user
-            if channel.type == 1 {
-                if let user = user {
-                    senderLabel.text = "\(user.firstName) \(user.lastName)"
-                    if let recentMessage = channel.recentMessage {
-                        if let userRecentMessage = recentMessage[user.uid] {
-                        messagePreviewLabel.text = userRecentMessage.body
-                        }
-                    }
-                    if let photoURL = user.photoURL {
-                            let url = URL(string: photoURL)
-                            profileImage.kf.setImage(with: url)
-                    } else {
-                        profileImageLabel.text = getInitial(first: user.firstName, last: user.lastName)
-                    }
+       
+        if channel.type == 1 {
+            if let user = user {
+                senderLabel.text = "\(user.firstName) \(user.lastName)"
+                if let recentMessage = recentMessage {
+                    messagePreviewLabel.text = recentMessage.body
                 }
-                
-            } else {
-                senderLabel.text = channel.name
-                if let recentMessage = channel.recentMessage {
-                    if let mostRecentMessage = recentMessage["recent"] {
-                        messagePreviewLabel.text = String("\(mostRecentMessage.sender.name): \(mostRecentMessage.body)")
-                        if let photoURL = mostRecentMessage.sender.photo {
-                                let url = URL(string: photoURL)
-                                profileImage.kf.setImage(with: url)
-                        } else {
-                            let nameArr = seperateWithWhiteSpace(n: mostRecentMessage.sender.name)
-                           
-                            profileImageLabel.text = getInitial(first: nameArr[0], last: nameArr[1])
-                        }
-                    }
+                if let photoURL = user.photoURL {
+                        let url = URL(string: photoURL)
+                        profileImage.kf.setImage(with: url)
+                    profileImageLabel.text = ""
                 } else {
-                    print("channel.recentMessage is nil")
-                        senderLabel.text = channel.name
-                        profileImageLabel.text = "?"
-                        messagePreviewLabel.font = UIFont.italicSystemFont(ofSize: 12)
-                        messagePreviewLabel.text = "no message has been sent."
+                    profileImageLabel.text = getInitial(first: user.firstName, last: user.lastName)
                 }
             }
-            let date = Date(seconds: channel.modifiedAt)
-            let dateArr = date.secondsToDayYearTime
-            dayLabel.text = dateArr[0]
-            timeLabel.text = dateArr[2]
+            
+        } else {
+            senderLabel.text = channel.name
+            if let recentMessage = recentMessage {
+                    messagePreviewLabel.text = String("\(recentMessage.sender.name): \(recentMessage.body)")
+                    if let photoURL = recentMessage.sender.photo {
+                            let url = URL(string: photoURL)
+                            profileImage.kf.setImage(with: url)
+                        profileImageLabel.text = ""
+                    } else {
+                        let nameArr = seperateWithWhiteSpace(n: recentMessage.sender.name)
+                       
+                        profileImageLabel.text = getInitial(first: nameArr[0], last: nameArr[1])
+                    }
+            } else {
+                print("channel.recentMessage is nil")
+                    senderLabel.text = channel.name
+                    profileImageLabel.text = "?"
+                    messagePreviewLabel.font = UIFont.italicSystemFont(ofSize: 12)
+                    messagePreviewLabel.text = "no message has been sent."
+            }
+        }
+        let date = Date(seconds: channel.modifiedAt)
+        let dateArr = date.secondsToDayYearTime
+        dayLabel.text = dateArr[0]
+        timeLabel.text = dateArr[2]
             
     }
     

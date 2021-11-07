@@ -31,7 +31,8 @@ public struct Channel: Codable {
         self.name = name
         self.type = 2
         self.photoURL = nil
-        self.recentMessage = [creatorUID: RecentMessage(body: "This is a test 🧝🏿‍♀️", viewers: nil, date: Date().timeIntervalSince1970, sender: SenderInfo(name: "Funa Nnoka", id: creatorUID, photo: nil))]
+        self.recentMessage = nil//["recent": RecentMessage(body: "", viewers: nil, date: Date().timeIntervalSince1970, sender: SenderInfo(name: "", id: "", photo: ""))]
+        //[creatorUID: RecentMessage(body: "This is a test 🧝🏿‍♀️", viewers: nil, date: Date().timeIntervalSince1970, sender: SenderInfo(name: "Funa Nnoka", id: creatorUID, photo: nil))]
     }
     
     init?(document: DocumentSnapshot) {
@@ -72,7 +73,7 @@ public struct Channel: Codable {
         self.name = nil
         self.type = 1
         self.photoURL = nil
-        self.recentMessage = [tappedUser.uid: RecentMessage(body: "This is a damn test 🧝🏿‍♀️", viewers: nil, date: Date().timeIntervalSince1970, sender: SenderInfo(name: "\(tappedUser.firstName) \(tappedUser.lastName)", id: tappedUser.uid, photo: nil)), "recent": RecentMessage(body: "Test: Most recent message 🧝🏿‍♀️", viewers: nil, date: Date().timeIntervalSince1970, sender: SenderInfo(name: "\(user.firstName) \(user.lastName)", id: user.uid, photo: nil))]
+        self.recentMessage = nil//["recent": RecentMessage(body: "", viewers: nil, date: Date().timeIntervalSince1970, sender: SenderInfo(name: "", id: "", photo: ""))]//[tappedUser.uid: RecentMessage(body: "This is a damn test 🧝🏿‍♀️", viewers: nil, date: Date().timeIntervalSince1970, sender: SenderInfo(name: "\(tappedUser.firstName) \(tappedUser.lastName)", id: tappedUser.uid, photo: nil)), "recent": RecentMessage(body: "Test: Most recent message 🧝🏿‍♀️", viewers: nil, date: Date().timeIntervalSince1970, sender: SenderInfo(name: "\(user.firstName) \(user.lastName)", id: user.uid, photo: nil))]
     }
 
 }
@@ -85,6 +86,39 @@ public struct RecentMessage: Codable {
     let date: Double
     let sender: SenderInfo
     
+    
+    init(user: User, message: Message) {
+        let name = "\(user.firstName) \(user.lastName)"
+        self.body = message.content
+        self.date = message.sentDate.timeIntervalSince1970
+        self.sender = SenderInfo(name: name, id: user.uid, photo: user.photoURL)
+        self.viewers = nil
+    }
+    
+    init?(document: DocumentSnapshot) {
+        let result = Result {
+            try document.data(as: RecentMessage.self)
+        }
+        
+        switch result {
+            case .success(let messageInfo):
+                if let messageInfo = messageInfo {
+                    print("recentMessageInfo: \(messageInfo)")
+                    self.body = messageInfo.body
+                    self.viewers = messageInfo.viewers
+                    self.date = messageInfo.date
+                    self.sender = messageInfo.sender
+                   
+                } else {
+                    
+                    print("RecentMessage Document does not exist for this channel")
+                    return nil
+                }
+            case .failure(let error):
+                print("Error decoding RecentMessage: \(error)")
+                return nil
+        }
+    }
 }
 
 public struct SenderInfo: Codable {

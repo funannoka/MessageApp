@@ -12,6 +12,12 @@
 		AA5CDDAF27272289000B6108 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5CDDAE27272289000B6108 /* SearchBarView.swift */; };
 		AA5CDDB12727249C000B6108 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5CDDB02727249C000B6108 /* SearchCollectionViewCell.swift */; };
 		AA5CDDB327278317000B6108 /* ExtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5CDDB227278317000B6108 /* ExtViewController.swift */; };
+		AA5FC8132733EAB800C28E0B /* ImageMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5FC8122733EAB700C28E0B /* ImageMediaItem.swift */; };
+		AA5FC8152733ED2A00C28E0B /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5FC8142733ED2A00C28E0B /* DatabaseRepresentation.swift */; };
+		AA5FC8172733F2D700C28E0B /* UIImage-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5FC8162733F2D700C28E0B /* UIImage-Ext.swift */; };
+		AA5FC81A2734623700C28E0B /* UIColor-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5FC8192734623700C28E0B /* UIColor-Ext.swift */; };
+		AA5FC81C273462B700C28E0B /* UICollectionView-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5FC81B273462B700C28E0B /* UICollectionView-Ext.swift */; };
+		AA5FC81E2734631500C28E0B /* UIView-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5FC81D2734631500C28E0B /* UIView-Ext.swift */; };
 		AA80DBF12724A1C9009D6197 /* ChannelsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA80DBEF2724A1C9009D6197 /* ChannelsCollectionViewCell.swift */; };
 		AA80DBF22724A1C9009D6197 /* ChannelsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA80DBF02724A1C9009D6197 /* ChannelsCollectionViewCell.xib */; };
 		AA80DBF42725C534009D6197 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA80DBF32725C533009D6197 /* SearchViewController.swift */; };
@@ -47,6 +53,12 @@
 		AA5CDDB02727249C000B6108 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA5CDDB227278317000B6108 /* ExtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtViewController.swift; sourceTree = "<group>"; };
 		AA5FC811273286A300C28E0B /* Notes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Notes.md; sourceTree = "<group>"; };
+		AA5FC8122733EAB700C28E0B /* ImageMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMediaItem.swift; sourceTree = "<group>"; };
+		AA5FC8142733ED2A00C28E0B /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
+		AA5FC8162733F2D700C28E0B /* UIImage-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Ext.swift"; sourceTree = "<group>"; };
+		AA5FC8192734623700C28E0B /* UIColor-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Ext.swift"; sourceTree = "<group>"; };
+		AA5FC81B273462B700C28E0B /* UICollectionView-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView-Ext.swift"; sourceTree = "<group>"; };
+		AA5FC81D2734631500C28E0B /* UIView-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-Ext.swift"; sourceTree = "<group>"; };
 		AA80DBEF2724A1C9009D6197 /* ChannelsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA80DBF02724A1C9009D6197 /* ChannelsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelsCollectionViewCell.xib; sourceTree = "<group>"; };
 		AA80DBF32725C533009D6197 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +118,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AA5FC818273461F900C28E0B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AACD5CAB272D3AD900DAD49E /* ExtCollectionViewCell.swift */,
+				AA5FC8162733F2D700C28E0B /* UIImage-Ext.swift */,
+				AA5FC8192734623700C28E0B /* UIColor-Ext.swift */,
+				AA5FC81B273462B700C28E0B /* UICollectionView-Ext.swift */,
+				AA5FC81D2734631500C28E0B /* UIView-Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		AA9009D1271F22D80030AD1C = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +156,7 @@
 				AA900A07271FDD670030AD1C /* Model */,
 				AA900A05271FDD3C0030AD1C /* Controller */,
 				AA900A06271FDD510030AD1C /* View */,
+				AA5FC818273461F900C28E0B /* Extensions */,
 				AA9009E6271F22DB0030AD1C /* Assets.xcassets */,
 				AA9009E8271F22DB0030AD1C /* LaunchScreen.storyboard */,
 				AA9009EB271F22DB0030AD1C /* Info.plist */,
@@ -167,7 +192,6 @@
 				AA5CDDAE27272289000B6108 /* SearchBarView.swift */,
 				AA5CDDB02727249C000B6108 /* SearchCollectionViewCell.swift */,
 				AACD5CA9272D187E00DAD49E /* ChannelsHeader.swift */,
-				AACD5CAB272D3AD900DAD49E /* ExtCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -177,6 +201,7 @@
 			children = (
 				AAEECB0F2726421400C8B6EC /* Message Kit */,
 				AAEECB1427264E2A00C8B6EC /* Firestore */,
+				AA5FC8122733EAB700C28E0B /* ImageMediaItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,6 +221,7 @@
 				AA8878582720CCDD00C561CA /* User.swift */,
 				AAEECB0D27263B6800C8B6EC /* Channel.swift */,
 				AAEECB1227264C6300C8B6EC /* MessageFirestore.swift */,
+				AA5FC8142733ED2A00C28E0B /* DatabaseRepresentation.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -327,21 +353,27 @@
 			files = (
 				AA900A0B271FDDFA0030AD1C /* LoginViewController.swift in Sources */,
 				AA5CDDB327278317000B6108 /* ExtViewController.swift in Sources */,
+				AA5FC81E2734631500C28E0B /* UIView-Ext.swift in Sources */,
 				AA1320EE2721EA6D0069E7F9 /* CircularImageView.swift in Sources */,
+				AA5FC8172733F2D700C28E0B /* UIImage-Ext.swift in Sources */,
 				AA9009F5271F2DAC0030AD1C /* Sender.swift in Sources */,
 				AAEECB0E27263B6800C8B6EC /* Channel.swift in Sources */,
 				AA9009E2271F22D80030AD1C /* ChatViewController.swift in Sources */,
 				AA900A0D271FDEBA0030AD1C /* ChannelsViewController.swift in Sources */,
 				AA9009F7271F322B0030AD1C /* Message.swift in Sources */,
+				AA5FC81A2734623700C28E0B /* UIColor-Ext.swift in Sources */,
 				AACD5CAA272D187E00DAD49E /* ChannelsHeader.swift in Sources */,
 				AA96D3B6272B3517002B18FD /* TabBarViewController.swift in Sources */,
 				AA900A09271FDDE10030AD1C /* RegisterViewController.swift in Sources */,
+				AA5FC81C273462B700C28E0B /* UICollectionView-Ext.swift in Sources */,
 				AA5CDDB12727249C000B6108 /* SearchCollectionViewCell.swift in Sources */,
 				AA80DBF42725C534009D6197 /* SearchViewController.swift in Sources */,
 				AA80DBF12724A1C9009D6197 /* ChannelsCollectionViewCell.swift in Sources */,
 				AA9009DE271F22D80030AD1C /* AppDelegate.swift in Sources */,
+				AA5FC8152733ED2A00C28E0B /* DatabaseRepresentation.swift in Sources */,
 				AA887857272076B100C561CA /* ImagePicker.swift in Sources */,
 				AACD5CAC272D3AD900DAD49E /* ExtCollectionViewCell.swift in Sources */,
+				AA5FC8132733EAB800C28E0B /* ImageMediaItem.swift in Sources */,
 				AA900A0F271FDF7F0030AD1C /* LandingViewController.swift in Sources */,
 				AAEECB1327264C6300C8B6EC /* MessageFirestore.swift in Sources */,
 				AA9009E0271F22D80030AD1C /* SceneDelegate.swift in Sources */,

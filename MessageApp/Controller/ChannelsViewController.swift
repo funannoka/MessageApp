@@ -21,12 +21,12 @@ class ChannelsViewController: UIViewController {
 //    var messages: [Message] = []
     var userInfo: User?
     var tappedUser: User?
-
+    var userAtCell: User?
     var currentUser: Firebase.User?
     var channels: [Channel] = []
     var currentChannelAlertController: UIAlertController?
     var tappedChannel: Channel?
-    
+    var recentMessage: RecentMessage?
     let db = Firestore.firestore()
     var channelReference: CollectionReference {
       return db.collection("channel")
@@ -34,9 +34,11 @@ class ChannelsViewController: UIViewController {
     var userReference: CollectionReference {
       return db.collection("users")
     }
+    var recentMessageReference: CollectionReference?
     var handle: AuthStateDidChangeListenerHandle?
     var channelListener: ListenerRegistration?
     var userListener: ListenerRegistration?
+    var messageListener: ListenerRegistration?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +83,7 @@ class ChannelsViewController: UIViewController {
         Auth.auth().removeStateDidChangeListener(handle!)
         channelListener?.remove()
         userListener?.remove()
+        messageListener?.remove()
 
     }
     
@@ -312,9 +315,10 @@ extension ChannelsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
         let cell: ChannelsCollectionViewCell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "ReusableCell", for: indexPath) as! ChannelsCollectionViewCell
         let channel = channels[indexPath.item]
+        recentMessageReference = db.collection("channel/\(channel.id)/recentMessage/")
+        self.recentMessage = nil
         if (channel.type == 1) {
             if let user = self.currentUser {
                 let members = channel.members
@@ -325,14 +329,30 @@ extension ChannelsViewController: UICollectionViewDataSource, UICollectionViewDe
                             print("Error getting documents: \(err)")
                         } else {
                             guard let snapshot = documentSnapshot else {
-                              print("Error listening for user updates: \(error?.localizedDescription ?? "No error")")
+                              print("Error listening for user updates")
                                 return
                             }
                             guard let tappedUser = User(document: snapshot) else {
                               return
                             }
-                            cell.updateCell(channel: channel, user: tappedUser)
-
+//                            self.userAtCell = tappedUser
+                            self.channelReference.document(channel.id).collection("recentMessage").document(tappedUser.uid).addSnapshotListener()  { snapshotDoc, err in
+                                if let err = err {
+                                    print("Error getting documents: \(err.localizedDescription)")
+                                } else {
+                                guard let snapshot = snapshotDoc else {
+                                  print("Error listening for recentMessage updates")
+                                    return
+                                }
+                                guard let recentMessage = RecentMessage(document: snapshot)
+                                else {
+                                    cell.updateCell(channel: channel, user: tappedUser, recentMessage: nil)
+                                  return
+                                }
+                                    cell.updateCell(channel: channel, user: tappedUser, recentMessage: recentMessage)
+                                }
+                            }
+//                            cell.updateCell(channel: channel, user: tappedUser, recentMessage: self.recentMessage)
                         }
                     }
                         
@@ -340,7 +360,24 @@ extension ChannelsViewController: UICollectionViewDataSource, UICollectionViewDe
             }
             
         } else {
-            cell.updateCell(channel: channels[indexPath.item], user: nil)
+            self.channelReference.document(channel.id).collection("recentMessage").document("recent").addSnapshotListener()  { snapshotDoc, err in
+                if let err = err {
+                    print("Error getting documents: \(err.localizedDescription)")
+                } else {
+                guard let snapshot = snapshotDoc else {
+                  print("Error listening for recentMessage updates")
+                    return
+                }
+                guard let recentMessage = RecentMessage(document: snapshot)
+                else {
+                    cell.updateCell(channel: channel, user: nil, recentMessage: nil)
+                  return
+                }
+                    cell.updateCell(channel: channel, user: nil, recentMessage: recentMessage)
+                }
+            }
+            
+//            cell.updateCell(channel: channels[indexPath.item], user: nil, recentMessage: self.recentMessage)
 
         }
         return cell
